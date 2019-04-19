@@ -15,7 +15,6 @@ public class DetailedActivity extends AppCompatActivity {
     private static final String LOG_TAG = DetailedActivity.class.getSimpleName();
 
     TextView textViewBabyName;
-    TextView textViewTime;
     RadioGroup radioGroupDiaperType;
     EditText editTextComments;
     CheckBox checkBoxPoop;
@@ -29,7 +28,6 @@ public class DetailedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data);
 
         textViewBabyName = findViewById(R.id.tvName);
-        textViewTime = findViewById(R.id.tvTime);
         radioGroupDiaperType = findViewById(R.id.rg_diaper_type);
         editTextComments = findViewById(R.id.etComments);
         checkBoxPoop = findViewById(R.id.cb_poop_present);
@@ -44,7 +42,6 @@ public class DetailedActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "textViewBabyName is null");
         }
         textViewBabyName.setText(babyName);
-        textViewTime.setText(System.currentTimeMillis()+"");
     }
 
     void onRadioButtonClicked(View view){
@@ -74,7 +71,7 @@ public class DetailedActivity extends AppCompatActivity {
     void saveDiaper(View view){
         String diaperInfo = "";
         diaperInfo += textViewBabyName.getText().toString() + "; ";
-        diaperInfo += textViewTime.getText().toString() + "; ";
+        diaperInfo += System.currentTimeMillis() + "; ";
         diaperInfo += diaperType + "; ";
         diaperInfo += poopPresent + "; ";
         String comments = editTextComments.getText().toString();
