@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">DiaperTracker</string>
+    <string name="topBaby" translatable="false">Auberon</string>
+    <string name="middleBaby" translatable="false">Blaise</string>
+    <string name="bottomBaby" translatable="false">Langdon</string>
+    <string name="infoPlaceholder">Last Diaper Change Info</string>
+
+    <string name="nameLabel">Baby Name:</string>
+    <string name="timeLabel">Time of Change:</string>
+    <string name="typeLabel">Type of Diaper:</string>
+    <string name="clothType">Cloth</string>
+    <string name="disposableType">Disposable</string>
+    <string name="poopLabel">Poop Present</string>
+    <string name="commentsLabel">Comments:</string>
+
+    <string name="saveButton">Save</string>
+
+</resources>
