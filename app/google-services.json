@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "707587990250",
+    "firebase_url": "https://diapertracker-cd374.firebaseio.com",
+    "project_id": "diapertracker-cd374",
+    "storage_bucket": "diapertracker-cd374.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707587990250:android:9f8b290d971fc775",
+        "android_client_info": {
+          "package_name": "com.barolak.diapertracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707587990250-t8evmum337fa21k1vpbfro58josohgu0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.barolak.diapertracker",
+            "certificate_hash": "ec80b9786c0c0e4f9ce7f33b7cde7311b6dca8d8"
+          }
+        },
+        {
+          "client_id": "707587990250-1egm1so70p0m6psokb4emug5h5h9cd3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlCQc88kBI71K-hE6T1Fq1yVi-r-HT-mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707587990250-1egm1so70p0m6psokb4emug5h5h9cd3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

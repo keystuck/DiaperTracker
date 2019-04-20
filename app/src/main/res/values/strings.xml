@@ -3,7 +3,7 @@
     <string name="topBaby" translatable="false">Auberon</string>
     <string name="middleBaby" translatable="false">Blaise</string>
     <string name="bottomBaby" translatable="false">Langdon</string>
-    <string name="infoPlaceholder">Last Diaper Change Info</string>
+    <string name="infoPlaceholder">Last Diaper Change Info which is pretty long because the wrap is problematic</string>
 
     <string name="nameLabel">Baby Name:</string>
     <string name="timeLabel">Time of Change:</string>

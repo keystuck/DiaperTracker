@@ -1,94 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
 
-
-    <Button
-        android:id="@+id/buttonTop"
-        android:layout_height="100dp"
-        android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="28dp"
-        android:background="@color/colorTopBaby"
-        android:text="@string/topBaby"
-        android:textSize="32sp"
-        android:onClick="openDetails"
-        />
-
-    <TextView
-        android:id="@+id/textViewTop"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/buttonTop"
-        app:layout_constraintLeft_toLeftOf="@id/buttonTop"
-        android:layout_margin="8dp"
-        tools:text="@string/infoPlaceholder"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="@+id/buttonTop"
-         />
-
-    <Button
-        android:id="@+id/buttonMiddle"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewTop"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="28dp"
-        android:background="@color/colorMiddleBaby"
-        android:text="@string/middleBaby"
-        android:textSize="32sp"
-        android:onClick="openDetails"
-            />
+        android:layout_gravity="center_horizontal"
+        tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textViewMiddle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/buttonMiddle"
-        app:layout_constraintLeft_toLeftOf="@id/buttonMiddle"
-        app:layout_constraintStart_toStartOf="@id/buttonMiddle"
-        android:layout_margin="8dp"
-        tools:text="@string/infoPlaceholder"
-        android:textSize="28sp"
-         />
+        <Button
+            android:id="@+id/buttonTop"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="28dp"
+            android:background="@color/colorTopBaby"
+            android:onClick="openDetails"
+            android:text="@string/topBaby"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_top"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/buttonTop"
+            app:layout_constraintLeft_toLeftOf="@id/buttonTop"
+            app:layout_constraintRight_toRightOf="@id/buttonTop"
+            app:layout_constraintStart_toStartOf="@+id/buttonTop"
+            app:layout_constraintTop_toBottomOf="@id/buttonTop"
+            tools:text="@string/infoPlaceholder" />
+
+        <Button
+            android:id="@+id/buttonMiddle"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="28dp"
+            android:background="@color/colorMiddleBaby"
+            android:onClick="openDetails"
+            android:text="@string/middleBaby"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_top" />
 
 
-    <Button
-        android:id="@+id/buttonBottom"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewMiddle"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="28dp"
-        android:background="@color/colorBottomBaby"
-        android:text="@string/bottomBaby"
-        android:textSize="32sp"
-        android:onClick="openDetails" />
-
-    <TextView
-        android:id="@+id/textViewBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/buttonBottom"
-        app:layout_constraintLeft_toLeftOf="@id/buttonBottom"
-        app:layout_constraintStart_toStartOf="@id/buttonBottom"
-        android:layout_margin="8dp"
-        tools:text="@string/infoPlaceholder"
-        android:textSize="28sp"
-         />
+        <TextView
+            android:id="@+id/tv_middle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/buttonMiddle"
+            app:layout_constraintLeft_toLeftOf="@id/buttonMiddle"
+            app:layout_constraintRight_toRightOf="@id/buttonMiddle"
+            app:layout_constraintStart_toStartOf="@id/buttonMiddle"
+            app:layout_constraintTop_toBottomOf="@id/buttonMiddle"
+            tools:text="@string/infoPlaceholder" />
 
 
+        <Button
+            android:id="@+id/buttonBottom"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="28dp"
+            android:background="@color/colorBottomBaby"
+            android:onClick="openDetails"
+            android:text="@string/bottomBaby"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_middle" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/buttonBottom"
+            app:layout_constraintLeft_toLeftOf="@id/buttonBottom"
+            app:layout_constraintRight_toRightOf="@id/buttonBottom"
+            app:layout_constraintStart_toStartOf="@id/buttonBottom"
+            app:layout_constraintTop_toBottomOf="@id/buttonBottom"
+            tools:text="@string/infoPlaceholder" />
 
 
-
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

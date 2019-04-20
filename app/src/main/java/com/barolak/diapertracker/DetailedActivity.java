@@ -1,5 +1,8 @@
 package com.barolak.diapertracker;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +14,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class DetailedActivity extends AppCompatActivity {
     private static final String LOG_TAG = DetailedActivity.class.getSimpleName();
+
+    protected static final String DIAPER_INFO = "diaperInfo";
 
     TextView textViewBabyName;
     RadioGroup radioGroupDiaperType;
@@ -44,7 +55,7 @@ public class DetailedActivity extends AppCompatActivity {
         textViewBabyName.setText(babyName);
     }
 
-    void onRadioButtonClicked(View view){
+    public void onRadioButtonClicked(View view){
         boolean checked = ((RadioButton) view).isChecked();
         if (view.getId() == R.id.rb_cloth){
             if (checked) {
@@ -58,7 +69,7 @@ public class DetailedActivity extends AppCompatActivity {
         }
     }
 
-    void onCheckBoxClicked(View view){
+    public void onCheckBoxClicked(View view){
         boolean checked = ((CheckBox) view).isChecked();
         if (view.getId() == R.id.cb_poop_present){
             if (checked){
@@ -68,16 +79,21 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
 
-    void saveDiaper(View view){
-        String diaperInfo = "";
-        diaperInfo += textViewBabyName.getText().toString() + "; ";
-        diaperInfo += System.currentTimeMillis() + "; ";
-        diaperInfo += diaperType + "; ";
-        diaperInfo += poopPresent + "; ";
-        String comments = editTextComments.getText().toString();
-        diaperInfo += comments;
+    public void saveDiaper(View view){
 
-        Toast.makeText(this, diaperInfo, Toast.LENGTH_LONG).show();
+        DiaperChange diaperInfo = new DiaperChange(textViewBabyName.getText().toString(),
+                System.currentTimeMillis(),
+                diaperType,
+                poopPresent,
+                editTextComments.getText().toString());
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(DIAPER_INFO, diaperInfo);
+        setResult(Activity.RESULT_OK, intent);
+
+        finish();
+
 
     }
 
