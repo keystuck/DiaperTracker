@@ -7,4 +7,6 @@
     <color name="colorMiddleBaby">#3A40FC</color>
     <color name="colorBottomBaby">#E57FFF</color>
     <color name="colorGo">#00FF00</color>
+    <color name="colorCancel">#FF0000</color>
+    <color name="colorChangeTime">#f4c842</color>
 </resources>

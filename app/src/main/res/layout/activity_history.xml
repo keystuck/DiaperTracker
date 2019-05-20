@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistoryActivity">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_top"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="28dp"
+            android:background="@color/colorTopBaby"
+            android:text="@string/topBaby"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+            <ListView
+                android:id="@+id/lv_top"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_margin="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_top"
+                app:layout_constraintRight_toRightOf="parent"
+                >
+
+            </ListView>
+            <TextView
+                android:id="@+id/tv_middle"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="28dp"
+                android:background="@color/colorMiddleBaby"
+                android:text="@string/middleBaby"
+                android:textSize="32sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lv_top"
+
+                />
+
+            <ListView
+                android:id="@+id/lv_middle"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_margin="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_middle"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+                <TextView
+                    android:id="@+id/tv_bottom"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="28dp"
+                    android:background="@color/colorBottomBaby"
+                    android:text="@string/bottomBaby"
+                    android:textSize="32sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lv_middle"
+
+                    />
+
+                <ListView
+                    android:id="@+id/lv_bottom"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="28dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bottom"
+                    app:layout_constraintRight_toRightOf="parent"
+                    >
+
+                </ListView>
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

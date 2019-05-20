@@ -1,12 +1,15 @@
 package com.barolak.diapertracker;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,6 +28,11 @@ public class DetailedActivity extends AppCompatActivity {
 
     protected static final String DIAPER_INFO = "diaperInfo";
 
+    Button saveButton;
+    Button cancelButton;
+    Button dateButton;
+    Button timeButton;
+
     TextView textViewBabyName;
     RadioGroup radioGroupDiaperType;
     EditText editTextComments;
@@ -37,6 +45,8 @@ public class DetailedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_data);
+
+
 
         textViewBabyName = findViewById(R.id.tvName);
         radioGroupDiaperType = findViewById(R.id.rg_diaper_type);
@@ -53,6 +63,14 @@ public class DetailedActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "textViewBabyName is null");
         }
         textViewBabyName.setText(babyName);
+        if (babyName.equals(getResources().getString(R.string.topBaby))){
+            textViewBabyName.setBackgroundColor(getResources().getColor(R.color.colorTopBaby));
+        } else if (babyName.equals(getResources().getString(R.string.middleBaby))){
+            textViewBabyName.setBackgroundColor(getResources().getColor(R.color.colorMiddleBaby));
+        } else if (babyName.equals(getResources().getString(R.string.bottomBaby))){
+            textViewBabyName.setBackgroundColor(getResources().getColor(R.color.colorBottomBaby));
+        }
+
     }
 
     public void onRadioButtonClicked(View view){
@@ -93,8 +111,14 @@ public class DetailedActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, intent);
 
         finish();
-
-
     }
+
+    public void cancel(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+
 
 }

@@ -14,5 +14,18 @@
     <string name="commentsLabel">Comments:</string>
 
     <string name="saveButton">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="changeDate">Date</string>
+    <string name="changeTime">Time</string>
+
+    <string name="lastPoop">Last Poop:</string>
+
+    <string name="unknown">unknown</string>
+
+    <string name="history">History</string>
+    <string name="ten_more">Get 10 more records</string>
+    <string name="get_all">Get all records</string>
+
+    <string name="firebase_ref_path">changes</string>
 
 </resources>

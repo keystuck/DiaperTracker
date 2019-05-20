@@ -18,6 +18,8 @@ public class DiaperChange implements Parcelable {
     public String comments;
     public String timeString;
 
+    public String lastPoop = "unknown";
+
     public DiaperChange(){}
 
     public DiaperChange(String babyName, long changeTime, String diaperType, boolean poopPresent, String comments){
@@ -26,10 +28,29 @@ public class DiaperChange implements Parcelable {
         this.diaperType = diaperType;
         this.poopPresent = poopPresent;
         this.comments = comments;
-        Log.d(LOG_TAG, "creating DiaperChange for " + babyName);
-
         this.timeString = dateToString(changeTime);
     }
+
+    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, String comments){
+        this.babyName = babyName;
+        this.changeTime = changeTime;
+        this.diaperType = diaperType;
+        this.poopPresent = poopPresent;
+        this.comments = comments;
+        this.timeString = timeString;
+    }
+
+    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, String comments, String lastPoop){
+        this.babyName = babyName;
+        this.changeTime = changeTime;
+        this.diaperType = diaperType;
+        this.poopPresent = poopPresent;
+        this.comments = comments;
+        this.timeString = timeString;
+        this.lastPoop = lastPoop;
+    }
+
+
 
     @Override
     public int describeContents() {
@@ -40,6 +61,7 @@ public class DiaperChange implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(babyName);
         dest.writeLong(changeTime);
+        dest.writeString(timeString);
         dest.writeString(diaperType);
         if (poopPresent){
             dest.writeInt(1);
@@ -48,7 +70,6 @@ public class DiaperChange implements Parcelable {
         }
         dest.writeString(comments);
 
-        Log.d(LOG_TAG, "creating parcel for " + babyName);
     }
 
     public static final Parcelable.Creator<DiaperChange> CREATOR =
@@ -65,6 +86,7 @@ public class DiaperChange implements Parcelable {
     private DiaperChange(Parcel in){
         babyName = in.readString();
         changeTime = in.readLong();
+        timeString = in.readString();
         diaperType = in.readString();
         if (in.readInt() == 0){
             poopPresent = false;
@@ -116,12 +138,16 @@ public class DiaperChange implements Parcelable {
         this.comments = comments;
     }
 
+    public String getTimeString(){
+        return timeString;
+    }
+
     @Override
     public String toString() {
         String lastChange = timeString
-                + "; type: " + diaperType;
+                + "; " + diaperType;
         if (poopPresent){
-            lastChange += "; poop";
+            lastChange += "; Poop";
         }
         if (!(comments.isEmpty())) {
             lastChange += "; " + comments;
@@ -129,7 +155,7 @@ public class DiaperChange implements Parcelable {
     }
 
     public String dateToString(long timeStamp){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE HH:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE h:mm aa");
         Date date = new Date(timeStamp);
 
         return simpleDateFormat.format(date);
@@ -139,4 +165,12 @@ public class DiaperChange implements Parcelable {
         timeString = dateToString(changeTime);
     }
 
+    public String getLastPoop(){
+        return lastPoop;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((this.getChangeTime().compareTo(((DiaperChange) obj).getChangeTime())) == 0);
+    }
 }

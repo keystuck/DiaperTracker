@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    >
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    android:background="?attr/colorPrimary"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    />
 <ScrollView
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" >
+ >
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,20 +52,39 @@
             app:layout_constraintRight_toRightOf="@id/buttonTop"
             app:layout_constraintStart_toStartOf="@+id/buttonTop"
             app:layout_constraintTop_toBottomOf="@id/buttonTop"
+            android:textColor="@android:color/black"
             tools:text="@string/infoPlaceholder" />
+
+        <TextView
+            tools:text="@string/infoPlaceholder"
+            android:id="@+id/tv_top_poop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin = "8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@id/buttonTop"
+            app:layout_constraintLeft_toLeftOf="@id/buttonTop"
+            app:layout_constraintRight_toRightOf="@id/buttonTop"
+            app:layout_constraintStart_toStartOf="@id/buttonTop"
+            app:layout_constraintTop_toBottomOf="@id/tv_top"/>
 
         <Button
             android:id="@+id/buttonMiddle"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_margin="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginStart="28dp"
             android:background="@color/colorMiddleBaby"
             android:onClick="openDetails"
             android:text="@string/middleBaby"
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_top" />
+            app:layout_constraintTop_toBottomOf="@id/tv_top_poop" />
 
 
         <TextView
@@ -59,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textSize="16sp"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@id/buttonMiddle"
             app:layout_constraintLeft_toLeftOf="@id/buttonMiddle"
             app:layout_constraintRight_toRightOf="@id/buttonMiddle"
@@ -67,18 +102,38 @@
             tools:text="@string/infoPlaceholder" />
 
 
+        <TextView
+            android:id="@+id/tv_middle_poop"
+            tools:text="@string/infoPlaceholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@id/buttonMiddle"
+            app:layout_constraintLeft_toLeftOf="@id/buttonMiddle"
+            app:layout_constraintRight_toRightOf="@id/buttonMiddle"
+            app:layout_constraintStart_toStartOf="@id/buttonMiddle"
+            app:layout_constraintTop_toBottomOf="@id/tv_middle"/>
+
+
         <Button
             android:id="@+id/buttonBottom"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_margin="28dp"
             android:background="@color/colorBottomBaby"
             android:onClick="openDetails"
             android:text="@string/bottomBaby"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="8dp"
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_middle" />
+            app:layout_constraintTop_toBottomOf="@id/tv_middle_poop" />
 
         <TextView
             android:id="@+id/tv_bottom"
@@ -86,6 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textSize="16sp"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@id/buttonBottom"
             app:layout_constraintLeft_toLeftOf="@id/buttonBottom"
             app:layout_constraintRight_toRightOf="@id/buttonBottom"
@@ -94,5 +150,22 @@
             tools:text="@string/infoPlaceholder" />
 
 
+        <TextView
+            android:id="@+id/tv_bottom_poop"
+            tools:text="@string/infoPlaceholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@id/buttonBottom"
+            app:layout_constraintLeft_toLeftOf="@id/buttonBottom"
+            app:layout_constraintRight_toRightOf="@id/buttonBottom"
+            app:layout_constraintStart_toStartOf="@id/buttonBottom"
+            app:layout_constraintTop_toBottomOf="@id/tv_bottom"/>
+
+
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
+</LinearLayout>
