@@ -10,44 +10,55 @@ import java.util.Date;
 public class DiaperChange implements Parcelable {
     public static final String LOG_TAG = DiaperChange.class.getSimpleName();
 
+    private static final int NORMAL = 0;
+    private static final int POOP = 2;
+    private static final int BATH = 5;
+
 
     public String babyName;
     public Long changeTime;
     public String diaperType;
     public Boolean poopPresent = false;
+    public Boolean bath = false;
     public String comments;
     public String timeString;
 
     public String lastPoop = "unknown";
 
+    public String lastBath = "unknown";
+
     public DiaperChange(){}
 
-    public DiaperChange(String babyName, long changeTime, String diaperType, boolean poopPresent, String comments){
+    public DiaperChange(String babyName, long changeTime, String diaperType, boolean poopPresent, boolean bath, String comments){
         this.babyName = babyName;
         this.changeTime = changeTime;
         this.diaperType = diaperType;
         this.poopPresent = poopPresent;
+        this.bath = bath;
         this.comments = comments;
-        this.timeString = dateToString(changeTime);
+        this.timeString = dateToString(changeTime, NORMAL);
     }
 
-    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, String comments){
+    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, boolean bath, String comments){
         this.babyName = babyName;
         this.changeTime = changeTime;
         this.diaperType = diaperType;
         this.poopPresent = poopPresent;
+        this.bath = bath;
         this.comments = comments;
         this.timeString = timeString;
     }
 
-    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, String comments, String lastPoop){
+    public DiaperChange(String babyName, long changeTime, String timeString, String diaperType, boolean poopPresent, boolean bath, String comments, String lastPoop, String lastBath){
         this.babyName = babyName;
         this.changeTime = changeTime;
         this.diaperType = diaperType;
         this.poopPresent = poopPresent;
+        this.bath = bath;
         this.comments = comments;
         this.timeString = timeString;
         this.lastPoop = lastPoop;
+        this.lastBath = lastBath;
     }
 
 
@@ -64,6 +75,11 @@ public class DiaperChange implements Parcelable {
         dest.writeString(timeString);
         dest.writeString(diaperType);
         if (poopPresent){
+            dest.writeInt(1);
+        } else {
+            dest.writeInt(0);
+        }
+        if (bath){
             dest.writeInt(1);
         } else {
             dest.writeInt(0);
@@ -93,9 +109,13 @@ public class DiaperChange implements Parcelable {
         } else {
             poopPresent = true;
         }
+        if (in.readInt() == 0){
+            bath = false;
+        } else {
+            bath = true;
+        }
         comments = in.readString();
-
-        timeString = dateToString(changeTime);
+        timeString = dateToString(changeTime, NORMAL);
     }
 
     public String getBabyName() {
@@ -130,6 +150,10 @@ public class DiaperChange implements Parcelable {
         this.poopPresent = poopPresent;
     }
 
+    public Boolean getBath(){
+        return bath;
+    }
+
     public String getComments() {
         return comments;
     }
@@ -149,24 +173,45 @@ public class DiaperChange implements Parcelable {
         if (poopPresent){
             lastChange += "; Poop";
         }
+        if (bath){
+            lastChange += "; Bath";
+        }
         if (!(comments.isEmpty())) {
             lastChange += "; " + comments;
-        } return lastChange;
+        }
+        return lastChange;
     }
 
-    public String dateToString(long timeStamp){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE h:mm aa");
-        Date date = new Date(timeStamp);
+    public String dateToString(long timeStamp, int type){
+        if (type == BATH){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MM/dd");
+            Date date = new Date(timeStamp);
 
-        return simpleDateFormat.format(date);
+            return simpleDateFormat.format(date);
+        } else {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE h:mm aa");
+            Date date = new Date(timeStamp);
+
+            return simpleDateFormat.format(date);
+        }
     }
 
     public void updateDate(){
-        timeString = dateToString(changeTime);
+        timeString = dateToString(changeTime, NORMAL);
+        if (poopPresent){
+            lastPoop = dateToString(changeTime, POOP);
+        }
+        if (bath){
+            lastBath = dateToString(changeTime, BATH);
+        }
     }
 
     public String getLastPoop(){
         return lastPoop;
+    }
+
+    public String getLastBath(){
+        return lastBath;
     }
 
     @Override

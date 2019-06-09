@@ -18,7 +18,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,14 +45,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
 
+
         textViewTop = findViewById(R.id.tv_top);
-        textViewTopPoop = findViewById(R.id.tv_top_poop);
+        textViewTopPoop = findViewById(R.id.tv_top_poop_bath);
         textViewMiddle = findViewById(R.id.tv_middle);
-        textViewMiddlePoop = findViewById(R.id.tv_middle_poop);
+        textViewMiddlePoop = findViewById(R.id.tv_middle_poop_bath);
         textViewBottom = findViewById(R.id.tv_bottom);
-        textViewBottomPoop = findViewById(R.id.tv_bottom_poop);
+        textViewBottomPoop = findViewById(R.id.tv_bottom_poop_bath);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef =  firebaseDatabase.getReference(getResources().getString(R.string.firebase_ref_path));
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             DiaperChange diaperChange = dataSnapshot.getValue(DiaperChange.class);
+                            Log.d(LOG_TAG, name + " pulling down: " + diaperChange.toString());
                             if (diaperChange != null) {
                                 diaperChange.updateDate();
                                 updateTextView(diaperChange);
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             DiaperChange diaperChange = dataSnapshot.getValue(DiaperChange.class);
                             if (diaperChange != null) {
+                                Log.d(LOG_TAG, name + " pulling down: " + diaperChange.toString());
                                 diaperChange.updateDate();
                                 updateTextView(diaperChange);
                             }
@@ -145,27 +148,70 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void updateTextView(DiaperChange diaperChange){
-
+        String lastsString = "";
         if (diaperChange.getBabyName().equals(getResources().getString(R.string.topBaby))){
             textViewTop.setText(diaperChange.toString());
+
             if (!(diaperChange.getLastPoop().equals(getResources().getString(R.string.unknown)))){
-                textViewTopPoop.setText(getResources().getString(R.string.lastPoop) +
-                        diaperChange.getLastPoop());
+                lastsString += "P: " +
+                        diaperChange.getLastPoop();
+            }
+            if (!(diaperChange.getLastBath().equals(getResources().getString(R.string.unknown)))) {
+                String shortTime;
+                if (diaperChange.getLastBath().contains(" PM")) {
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" PM"));
+                } else if (diaperChange.getLastBath().contains(" AM")){
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" AM"));
+                } else {
+                    shortTime = diaperChange.getLastBath();
+                }
+                lastsString += "/B: "+
+                        shortTime;
 
             }
+            textViewTopPoop.setText(lastsString);
 
         } else if (diaperChange.getBabyName().equals(getResources().getString(R.string.middleBaby))){
             textViewMiddle.setText(diaperChange.toString());
             if (!(diaperChange.getLastPoop().equals(getResources().getString(R.string.unknown)))){
-                textViewMiddlePoop.setText(getResources().getString(R.string.lastPoop) +
-                        diaperChange.getLastPoop());
+                lastsString += "P: " +
+                        diaperChange.getLastPoop();
             }
+            if (!(diaperChange.getLastBath().equals(getResources().getString(R.string.unknown)))){
+                String shortTime;
+                if (diaperChange.getLastBath().contains(" PM")) {
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" PM"));
+                } else if (diaperChange.getLastBath().contains(" AM")){
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" AM"));
+                } else {
+                    shortTime = diaperChange.getLastBath();
+                }
+                lastsString += "/B: "+
+                        shortTime;
+
+            }
+            textViewMiddlePoop.setText(lastsString);
         } else if (diaperChange.getBabyName().equals(getResources().getString(R.string.bottomBaby))){
             textViewBottom.setText(diaperChange.toString());
+
+
             if (!(diaperChange.getLastPoop().equals(getResources().getString(R.string.unknown)))){
-                textViewBottomPoop.setText(getResources().getString(R.string.lastPoop) +
-                        diaperChange.getLastPoop());
+                lastsString += "P: " +
+                        diaperChange.getLastPoop();
             }
+            if (!(diaperChange.getLastBath().equals(getResources().getString(R.string.unknown)))) {
+                String shortTime;
+                if (diaperChange.getLastBath().contains(" PM")) {
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" PM"));
+                } else if (diaperChange.getLastBath().contains(" AM")){
+                    shortTime = diaperChange.getLastBath().substring(0, diaperChange.getLastBath().indexOf(" AM"));
+                } else {
+                    shortTime = diaperChange.getLastBath();
+                }
+                lastsString += "/B: "+
+               shortTime;
+            }
+            textViewBottomPoop.setText(lastsString);
         } else {
             Log.d(LOG_TAG, "unidentified baby");
         }
@@ -175,11 +221,15 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, Object> updates = new HashMap<>();
         updates.put("changeTime", result.getChangeTime());
         updates.put("comments", result.getComments());
+        updates.put("bath", result.getBath());
         updates.put("diaperType", result.getDiaperType());
         updates.put("poopPresent", result.getPoopPresent());
         updates.put("timeString", result.getTimeString());
         if (result.getPoopPresent()){
             updates.put("lastPoop", result.getTimeString());
+        }
+        if (result.getBath()){
+            updates.put("lastBath", result.getTimeString());
         }
         return updates;
 

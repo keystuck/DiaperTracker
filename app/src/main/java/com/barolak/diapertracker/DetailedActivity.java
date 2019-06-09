@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,17 +29,16 @@ public class DetailedActivity extends AppCompatActivity {
 
     protected static final String DIAPER_INFO = "diaperInfo";
 
-    Button saveButton;
-    Button cancelButton;
-    Button dateButton;
-    Button timeButton;
+
 
     TextView textViewBabyName;
     RadioGroup radioGroupDiaperType;
     EditText editTextComments;
     CheckBox checkBoxPoop;
+    CheckBox checkBoxBath;
     String diaperType = "unknown";
     boolean poopPresent = false;
+    boolean bath = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,18 @@ public class DetailedActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_data);
 
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         textViewBabyName = findViewById(R.id.tvName);
         radioGroupDiaperType = findViewById(R.id.rg_diaper_type);
         editTextComments = findViewById(R.id.etComments);
         checkBoxPoop = findViewById(R.id.cb_poop_present);
+        checkBoxBath = findViewById(R.id.cb_bath);
+
 
 
 
@@ -93,6 +99,10 @@ public class DetailedActivity extends AppCompatActivity {
             if (checked){
                 poopPresent = true;
             }
+        } else if (view.getId() == R.id.cb_bath){
+            if (checked){
+                bath = true;
+            }
         }
     }
 
@@ -103,8 +113,8 @@ public class DetailedActivity extends AppCompatActivity {
                 System.currentTimeMillis(),
                 diaperType,
                 poopPresent,
+                bath,
                 editTextComments.getText().toString());
-
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(DIAPER_INFO, diaperInfo);
@@ -114,9 +124,13 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     public void cancel(View view){
-        Intent intent = new Intent(this, MainActivity.class);
         setResult(Activity.RESULT_CANCELED);
         finish();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
 

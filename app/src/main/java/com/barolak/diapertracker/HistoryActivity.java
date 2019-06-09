@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -38,6 +39,12 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //get reference from firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef =  firebaseDatabase.getReference(getResources().getString(R.string.firebase_ref_path));
@@ -70,14 +77,12 @@ public class HistoryActivity extends AppCompatActivity {
                             DiaperChange diaperChange = dataSnapshot.getValue(DiaperChange.class);
                             if (diaperChange != null) {
                                 diaperChange.updateDate();
-                                Log.v(LOG_TAG, diaperChange.getTimeString().toString());
                                 if (name.equals(getResources().getString(R.string.topBaby))
                                      && !topList.contains(diaperChange)){
                                     topList.add(0, diaperChange);
 
                                     //TODO: sort out this mess
 //                                    adapterTop.add(diaperChange);
-                                    Log.v(LOG_TAG, "adding " + diaperChange.getTimeString());
                                 } else if (name.equals(getResources().getString(R.string.middleBaby))
                                     && !middleList.contains(diaperChange)){
                                     middleList.add(0, diaperChange);
@@ -126,4 +131,9 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 }

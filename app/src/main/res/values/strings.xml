@@ -11,6 +11,7 @@
     <string name="clothType">Cloth</string>
     <string name="disposableType">Disposable</string>
     <string name="poopLabel">Poop Present</string>
+    <string name="bathLabel">Bath</string>
     <string name="commentsLabel">Comments:</string>
 
     <string name="saveButton">Save</string>
@@ -18,10 +19,12 @@
     <string name="changeDate">Date</string>
     <string name="changeTime">Time</string>
 
-    <string name="lastPoop">Last Poop:</string>
+    <string name="lastPoop">Poop:</string>
+    <string name="lastBath">Bath:</string>
 
     <string name="unknown">unknown</string>
 
+    <string name="diaper_details">Details</string>
     <string name="history">History</string>
     <string name="ten_more">Get 10 more records</string>
     <string name="get_all">Get all records</string>

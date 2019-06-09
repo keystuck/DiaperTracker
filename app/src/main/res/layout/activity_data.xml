@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:elevation="4dp">
+<TextView
+    android:text="@string/diaper_details"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+
     >
 <android.support.constraint.ConstraintLayout
 
@@ -87,13 +107,37 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:onClick="onCheckBoxClicked"/>
 
+    <CheckBox
+        android:id="@+id/cb_bath"
+        android:textSize="32sp"
+        android:text="@string/bathLabel"
+        android:layout_margin="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cb_poop_present"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:onClick="onCheckBoxClicked"/>
+
+    <ImageView
+        android:id="@+id/iv_bath"
+        android:src="@drawable/bath"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toRightOf="@id/cb_bath"
+        app:layout_constraintTop_toTopOf="@id/cb_bath"
+        app:layout_constraintBottom_toBottomOf="@id/cb_bath"/>
+
+    <!-- Icons made by Freepik from https://www.flaticon.com/		    www.flaticon.com< is licensed by http://creativecommons.org/licenses/by/3.0/ 			   Creative Commons BY 3.0 CC 3.0 BY -->
+
     <Button
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/saveButton"
         app:layout_constraintLeft_toRightOf="@id/btn_cancel"
-        app:layout_constraintTop_toBottomOf="@id/cb_poop_present"
+        app:layout_constraintTop_toBottomOf="@id/cb_bath"
         android:layout_margin="28dp"
         android:textSize="32sp"
         android:background="@color/colorGo"
@@ -106,7 +150,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_poop_present"
+        app:layout_constraintTop_toBottomOf="@id/cb_bath"
         android:layout_margin="28dp"
         android:textSize="32sp"
         android:background="@color/colorCancel"
@@ -135,3 +179,4 @@
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
+</LinearLayout>
